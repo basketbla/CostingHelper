@@ -15,9 +15,8 @@ using System.Windows.Shapes;
 
 namespace CostingHelper
 {
-    /// <summary>
-    /// Interaction logic for ChooseSitesWindow.xaml
-    /// </summary>
+    ///Window that lets the user choose which sites (only google shopping included for now)
+    ///and how many search results from each site (current max of 20).
     public partial class ChooseSitesWindow : Window
     {
         public bool starting = true;
@@ -33,16 +32,18 @@ namespace CostingHelper
 
             starting = true;
             Check1.IsChecked = selected.Contains(0);
-            Check2.IsChecked = selected.Contains(1);
+            ChooseNum1.SelectedIndex = nums[0];
+
+            /*Check2.IsChecked = selected.Contains(1);
             Check3.IsChecked = selected.Contains(2);
             Check4.IsChecked = selected.Contains(3);
             Check5.IsChecked = selected.Contains(4);
 
-            ChooseNum1.SelectedIndex = nums[0];
             ChooseNum2.SelectedIndex = nums[1];
             ChooseNum3.SelectedIndex = nums[2];
             ChooseNum4.SelectedIndex = nums[3];
-            ChooseNum5.SelectedIndex = nums[4];
+            ChooseNum5.SelectedIndex = nums[4];*/
+
             starting = false;
 
         }
@@ -62,6 +63,7 @@ namespace CostingHelper
             }
         }
 
+        /*
         private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
         {
             if (!starting)
@@ -124,7 +126,7 @@ namespace CostingHelper
             {
                 MainWindow.selectedSites.Remove(4);
             }
-        }
+        }*/
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -134,7 +136,7 @@ namespace CostingHelper
             }
 
         }
-
+        /*
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             if (!starting)
@@ -166,5 +168,6 @@ namespace CostingHelper
                 MainWindow.numResultsList[4] = ChooseNum5.SelectedIndex;
             }
         }
+        */
     }
 }

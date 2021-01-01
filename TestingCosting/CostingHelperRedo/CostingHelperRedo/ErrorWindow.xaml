@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="You Done Left Out A File" Height="200" Width="400">
     <Grid>
-        <Label Content="Looks like you forgot   &#xD;&#xA;to enter file names..." HorizontalAlignment="Left" Margin="59,23,0,0" VerticalAlignment="Top" FontSize="25" Width="269" Height="138" FontWeight="Bold"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="61*"/>
+            <RowDefinition Height="108*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Looks like you forgot   &#xA;to enter file names...&#xD;&#xA;(make sure files end in .txt)" HorizontalAlignment="Left" Margin="25,8,0,0" VerticalAlignment="Top" FontSize="25" Width="333" Height="151" FontWeight="Bold" Grid.RowSpan="2"/>
 
     </Grid>
 </Window>

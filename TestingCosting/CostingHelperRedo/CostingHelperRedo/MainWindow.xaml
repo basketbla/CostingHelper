@@ -13,8 +13,11 @@
         <Button x:Name="Go" Content="Go" HorizontalAlignment="Left" Margin="260,336,0,0" VerticalAlignment="Top" Width="275" Click="Go_Click"/>
         <TextBox x:Name="ReadFileBox" HorizontalAlignment="Left" Height="21" Margin="30,105,0,0" TextWrapping="Wrap" Text="No File Selected" VerticalAlignment="Top" Width="227" TextChanged="ReadFileBox_TextChanged"/>
         <TextBox x:Name="WriteFileBox" HorizontalAlignment="Left" Height="21" Margin="30,220,0,0" TextWrapping="Wrap" Text="No File Selected" VerticalAlignment="Top" Width="227" TextChanged="WriteFileBox_TextChanged_1"/>
-        <Button x:Name="ChooseSites" HorizontalAlignment="Left" Margin="563,159,0,0" VerticalAlignment="Top" Width="188" Height="55" Click="ChooseSites_Click">
-            <TextBlock Text="Choose which sites to searh (default is Google Shopping)" TextWrapping="Wrap"/>
+        <Button x:Name="ChooseSites" HorizontalAlignment="Left" Margin="557,195,0,0" VerticalAlignment="Top" Width="140" Height="46" Click="ChooseSites_Click">
+            <TextBlock TextWrapping="Wrap" Width="92" HorizontalAlignment="Left" TextAlignment="Center"><Run Text="Search"/><LineBreak/><Run Text="Preferences"/></TextBlock>
         </Button>
+        <Button Content="Enter Items Directly" HorizontalAlignment="Left" Margin="557,105,0,0" VerticalAlignment="Top" Width="140" Height="20" Click="EnterDirect_Click"/>
+        <Label Content="Or" HorizontalAlignment="Left" Margin="499,102,0,0" VerticalAlignment="Top"/>
+        <Button Content="Help" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="73" Click="Help_Click"/>
     </Grid>
 </Window>

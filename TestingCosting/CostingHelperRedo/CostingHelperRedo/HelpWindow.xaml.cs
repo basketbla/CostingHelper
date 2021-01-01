@@ -14,10 +14,10 @@ using System.Windows.Shapes;
 
 namespace CostingHelper
 {
-    /// Error window, shown when file names are incorrect/missing.
-    public partial class ErrorWindow : Window
+    ///Just a scrollable text help page
+    public partial class HelpWindow : Window
     {
-        public ErrorWindow()
+        public HelpWindow()
         {
             InitializeComponent();
         }

@@ -16,13 +16,13 @@ using System.Windows.Shapes;
 
 namespace CostingHelper
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    /// Main window. Lets user enter input/output files and search preferences.
     public partial class MainWindow : Window
     {
+        public static string directText = "Enter Items Here";
         public static string readFile = "";
         public static string writeFile = "";
+        public static bool usingFile = true;
 
         public static List<int> selectedSites = new List<int> { 0 };
         public static List<int> numResultsList = new List<int> { 2, 2, 2, 2, 2 };
@@ -34,6 +34,7 @@ namespace CostingHelper
 
         private void ChooseReadFile_Click(object sender, RoutedEventArgs e)
         {
+            usingFile = true;
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.ShowDialog();
             ReadFileBox.Text = openFileDialog1.FileName;
@@ -49,7 +50,7 @@ namespace CostingHelper
         private void Go_Click(object sender, RoutedEventArgs e)
         {
 
-            if (!ReadFileBox.Text.Contains(".txt") || !WriteFileBox.Text.Contains(".txt"))
+            if ((usingFile && (!ReadFileBox.Text.Contains(".txt"))) || (!WriteFileBox.Text.Contains(".txt")))
             {
                 ErrorWindow err = new ErrorWindow();
                 err.Show();
@@ -77,5 +78,18 @@ namespace CostingHelper
             ChooseSitesWindow toOpen = new ChooseSitesWindow();
             toOpen.Show();
         }
+
+        private void EnterDirect_Click(object sender, RoutedEventArgs e)
+        {
+            usingFile = false;
+            DirectEntryWindow toOpen = new DirectEntryWindow();
+            toOpen.Show();
+        }
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            HelpWindow toOpen = new HelpWindow();
+            toOpen.Show();
+        }
+
     }
 }

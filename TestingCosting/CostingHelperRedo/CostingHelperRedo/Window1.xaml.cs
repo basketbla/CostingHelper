@@ -23,29 +23,35 @@ using AngleSharp.Text;
 
 namespace CostingHelper
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
+    /// This is the core of the program. Scrapes the website for the selected number
+    /// of results for each item. Outputs the average prices as well as the individual prices
+    /// to the specified output file.
     public partial class Window1 : Window
     {
-        string readFile = MainWindow.readFile;
+        bool usingFile = MainWindow.usingFile;
+        string readFile = "";
         string writeFile = MainWindow.writeFile;
 
         //Things to get with scraper
-        private string Title { get; set; }
-        private string Url { get; set; }
-        private string siteUrl = "https://shopping.google.com/u/0/";
+        //private string Url { get; set; }
+        //private string siteUrl = "https://shopping.google.com/u/0/";
+        private string siteUrl = "";
         public List<string> QueryTerms = new List<string>();
 
-        private double cost1 = 0.0;
-        private double cost2 = 0.0;
-        private double cost3 = 0.0;
 
         public Window1()
         {
             InitializeComponent();
             ReadFileLabel.Content = "Doing some scraping and such...";
-            //WriteFileLabel.Content = writeFile;
+            
+            if(usingFile)
+            {
+                readFile = MainWindow.readFile;
+            }
+            else
+            {
+                readFile = DirectEntryWindow.directText;
+            }
 
             List<int> selected = MainWindow.selectedSites;
             List<int> numResults = MainWindow.numResultsList;
@@ -59,6 +65,7 @@ namespace CostingHelper
                     ScrapeGoogle(term, numResults[0] + 1);
                 }
             }
+            /*
             if (selected.Contains(1))
             {
                 foreach (string term in QueryTerms)
@@ -91,7 +98,7 @@ namespace CostingHelper
                     siteUrl = "https://www.google.com/search?psb=1&tbm=shop&q=" + term + "&ved=0CAQQr4sDKAJqFwoTCI2Vw6OSyesCFVoeswAdo2EPURAD";
                     //ScrapeGoogle(term, numResults[4]+1);
                 }
-            }
+            }*/
 
 
         }
@@ -100,12 +107,25 @@ namespace CostingHelper
         public void ReadInput()
         {
             resultsTextBox.Text += "\nStarting readInput";
-            StreamReader sr = new StreamReader(readFile);
-            string line = sr.ReadLine();
-            while (line != null)
+            if(usingFile)
             {
-                QueryTerms.Add(line);
-                line = sr.ReadLine();
+                StreamReader sr = new StreamReader(readFile);
+                string line = sr.ReadLine();
+                while (line != null)
+                {
+                    QueryTerms.Add(line);
+                    line = sr.ReadLine();
+                }
+            }
+            else
+            {
+                StringReader strr = new StringReader(readFile);
+                string line = strr.ReadLine();
+                while (line != null)
+                {
+                    QueryTerms.Add(line);
+                    line = strr.ReadLine();
+                }
             }
         }
 
@@ -191,7 +211,7 @@ namespace CostingHelper
 
 
             System.IO.File.AppendAllText(writeFile, $"{term}");
-            System.IO.File.AppendAllText(writeFile, $"\nAverage price: ${avg}\n");
+            System.IO.File.AppendAllText(writeFile, $"\nAverage price (including shipping):${avg}\n");
             System.IO.File.AppendAllText(writeFile, output);
             System.IO.File.AppendAllText(writeFile, "\n\n\n");
 
@@ -287,6 +307,7 @@ namespace CostingHelper
             return output;
         }
 
+        /*
         internal async void ScrapeWalgreens(string term, int numResults)
         {
             resultsTextBox.Text += "\nStarting ScrapeWalgreens";
@@ -629,6 +650,6 @@ namespace CostingHelper
             }
 
             return output;
-        }
+        }*/
     }
 }
